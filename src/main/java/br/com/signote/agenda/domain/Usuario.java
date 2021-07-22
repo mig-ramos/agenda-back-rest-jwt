@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.ColumnDefault;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -28,7 +29,10 @@ public class Usuario implements Serializable {
 	
 	@Column(unique=true)
 	private String email;
+	
+	@JsonIgnore
 	private String senha;
+	
 	private String codigo;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")

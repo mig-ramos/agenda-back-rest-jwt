@@ -22,7 +22,7 @@ public class UsuarioNewDTO implements Serializable {
 	@Email(message="Email inválido")
 	private String email;
 
-	@Column(length = 255, nullable = false)
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 
 	@Column(length = 6)

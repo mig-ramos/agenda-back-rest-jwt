@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,9 @@ import br.com.signote.agenda.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UsuarioService {
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	@Autowired
 	private UsuarioRepository repo;
@@ -43,7 +47,7 @@ public class UsuarioService {
 		return new Usuario(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(),null,null,null, null);
 	}
 	public Usuario fromDTO(@Valid UsuarioNewDTO objDTO) {		
-		Usuario usu = new Usuario(null, objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getPerfil());
+		Usuario usu = new Usuario(null, objDTO.getEmail(), pe.encode(objDTO.getSenha()), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getPerfil());
 		Boolean ativo = objDTO.getAtivo() == null || !objDTO.getAtivo() ? false : true;
 		usu.setAtivo(ativo);
 		Date instante = objDTO.getInstante() == null ? new Date():  objDTO.getInstante();
