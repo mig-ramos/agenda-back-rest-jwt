@@ -41,12 +41,12 @@ public class PacienteService {
 	}
 
 	public Paciente fromDTO(@Valid PacienteDTO objDTO) {
-		return new Paciente(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(), null, null, null, null, objDTO.getNome(), objDTO.getData_nascimento());
+		return new Paciente(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(), null, null, null, objDTO.getNome(), objDTO.getData_nascimento());
 	}
 	
 	public Paciente fromDTO(@Valid PacienteNewDTO objDTO) throws ParseException {
 
-		Paciente paci = new Paciente(null, objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getPerfil(), objDTO.getNome(), objDTO.getData_nascimento());
+		Paciente paci = new Paciente(null, objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getNome(), objDTO.getData_nascimento());
 		Boolean ativo = objDTO.getAtivo() == null || !objDTO.getAtivo() ? false : true;
 		paci.setAtivo(ativo);
 		Date instante = objDTO.getInstante() == null ? new Date():  objDTO.getInstante();

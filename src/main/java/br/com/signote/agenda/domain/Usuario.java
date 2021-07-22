@@ -2,21 +2,27 @@ package br.com.signote.agenda.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ColumnDefault;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.signote.agenda.domain.enums.Perfil;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -40,14 +46,15 @@ public class Usuario implements Serializable {
 	private Date instante;
 	private Boolean ativo;
 	
-	@ManyToOne
-	@JoinColumn(name="perfil_id")
-	private Perfil perfil;
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
 	
 	public Usuario() {
+		addPerfil(Perfil.USUARIO);
 	}
 
-	public Usuario(Integer id, String email, String senha, String codigo, Date instante, Boolean ativo, Perfil perfil) {
+	public Usuario(Integer id, String email, String senha, String codigo, Date instante, Boolean ativo) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -55,7 +62,7 @@ public class Usuario implements Serializable {
 		this.codigo = codigo;
 		this.instante = instante;		 
 		this.ativo = ativo;
-		this.perfil = perfil;
+		addPerfil(Perfil.USUARIO);
 	}
 
 	public Integer getId() {
@@ -105,13 +112,13 @@ public class Usuario implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-
-	public Perfil getPerfil() {
-		return perfil;
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet()); 
 	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
 
 	@Override

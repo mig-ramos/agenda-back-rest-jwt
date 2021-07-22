@@ -15,15 +15,14 @@ import br.com.signote.agenda.domain.Especialidade;
 import br.com.signote.agenda.domain.HoraDisponivel;
 import br.com.signote.agenda.domain.Medico;
 import br.com.signote.agenda.domain.Paciente;
-import br.com.signote.agenda.domain.Perfil;
 import br.com.signote.agenda.domain.TipoConsulta;
 import br.com.signote.agenda.domain.Usuario;
+import br.com.signote.agenda.domain.enums.Perfil;
 import br.com.signote.agenda.repositories.AgendaRepository;
 import br.com.signote.agenda.repositories.EspecialidadeRepository;
 import br.com.signote.agenda.repositories.HoraDisponivelRepository;
 import br.com.signote.agenda.repositories.MedicoRepository;
 import br.com.signote.agenda.repositories.PacienteRepository;
-import br.com.signote.agenda.repositories.PerfilRepository;
 import br.com.signote.agenda.repositories.TipoConsultaRepository;
 import br.com.signote.agenda.repositories.UsuarioRepository;
 
@@ -37,8 +36,6 @@ public class DBService {
 	private EspecialidadeRepository especialidadeRepository;	
 	@Autowired
 	private HoraDisponivelRepository horaRepository;	
-	@Autowired
-	private PerfilRepository perfilRepository;
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	@Autowired
@@ -56,18 +53,17 @@ SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
 		SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
 		
-		Perfil per1 = new Perfil(null, "Paciente");
-		Perfil per2 = new Perfil(null, "Médico");
-		Perfil per3 = new Perfil(null, "Admin");
-		
-		
 		Especialidade esp1 = new Especialidade(null,"Pediatra", "Descrição do Pediatra");
 		Especialidade esp2 = new Especialidade(null,"Clínico Geral", "Descrição do Clínico Geral");
 		
-		Usuario usu1 = new Usuario(null,"admin.ephemeris@gmail.com", pe.encode("123"),"123456", sdf1.parse("14/05/1959 09:45"), true, per3);
-		Paciente pac1 = new Paciente(null,"p.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("10/08/1959 13:40"), true, per1, "Paciente da Silva", sdf2.parse("14/05/1959")) ;		
-		Medico med1 = new Medico(null,"m.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("04/05/1959 10:45"), true, per2, "Médico da Silva", 123456, sdf2.parse("14/05/1959"));
-		Medico med2 = new Medico(null,"mig.ramos10@gmail.com", pe.encode("123"),"789123",sdf1.parse("14/10/1959 12:45"), true, per2, "Miguel A Ramos", 435465, sdf2.parse("14/05/1959"));
+		Usuario usu1 = new Usuario(null,"admin.ephemeris@gmail.com", pe.encode("123"),"123456", sdf1.parse("14/05/1959 09:45"), true);
+		usu1.addPerfil(Perfil.ADMIN);
+		
+		Paciente pac1 = new Paciente(null,"p.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("10/08/1959 13:40"), true, "Paciente da Silva", sdf2.parse("14/05/1959")) ;
+		
+		Medico med1 = new Medico(null,"m.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("04/05/1959 10:45"), true, "Médico da Silva", 123456, sdf2.parse("14/05/1959"));
+		
+		Medico med2 = new Medico(null,"mig.ramos10@gmail.com", pe.encode("123"),"789123",sdf1.parse("14/10/1959 12:45"), true, "Miguel A Ramos", 435465, sdf2.parse("14/05/1959"));
 		
 		HoraDisponivel hr1 = new HoraDisponivel(null, LocalTime.of(8, 0));
 		HoraDisponivel hr2 = new HoraDisponivel(null, LocalTime.of(9, 0));
@@ -78,20 +74,12 @@ SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		HoraDisponivel hr7 = new HoraDisponivel(null, LocalTime.of(15, 0));
 		HoraDisponivel hr8 = new HoraDisponivel(null, LocalTime.of(16, 0));	
 		
-		per3.getUsuarios().addAll(Arrays.asList(usu1));
-		per1.getUsuarios().addAll(Arrays.asList(pac1));
-		per2.getUsuarios().addAll(Arrays.asList(med1));
-		per2.getUsuarios().add(med2);		
-		
-//		Especialidade esp1 = new Especialidade(null,"Pediatra", "Descrição do Pediatra");
-//		Especialidade esp2 = new Especialidade(null,"Clínico Geral", "Descrição do Clínico Geral");
 		Especialidade esp3 = new Especialidade(null,"Otorrino", "Descrição do Otorrino");
 		Especialidade esp4 = new Especialidade(null,"Geriatra", "Descrição do Geriatra");
 		Especialidade esp5 = new Especialidade(null,"Dermatologista", "Descrição do Dermatologista");
 		Especialidade esp6 = new Especialidade(null,"Gastro", "Descrição do Gastro");
 		Especialidade esp7 = new Especialidade(null,"Psiquiatra", "Descrição do Psiquiatra");			
 		
-		perfilRepository.saveAll(Arrays.asList(per1, per2, per3));		
 		usuarioRepository.saveAll(Arrays.asList(usu1));		
 		pacienteRepository.save(pac1);
 		

@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.signote.agenda.domain.enums.Perfil;
+
 @Entity
 public class Paciente extends Usuario{
 	private static final long serialVersionUID = 1L;
@@ -26,19 +28,14 @@ public class Paciente extends Usuario{
 	private List<Agenda> agendas = new ArrayList<>();
 	
 	public Paciente() {
+		addPerfil(Perfil.PACIENTE);
 	}		
 	
-
-//	public Paciente(String nome, LocalDate data_nascimento) {
-//		super();
-//		this.nome = nome;
-//		this.data_nascimento = data_nascimento;
-//	}
-
-	public Paciente(Integer id, String email, String senha, String codigo, Date instante, Boolean ativo, Perfil perfil, String nome, Date data_nascimento) {
-		super(id, email, senha, codigo, instante, ativo, perfil);
+	public Paciente(Integer id, String email, String senha, String codigo, Date instante, Boolean ativo, String nome, Date data_nascimento) {
+		super(id, email, senha, codigo, instante, ativo);
 		this.nome = nome;
 		this.data_nascimento = data_nascimento;
+		addPerfil(Perfil.PACIENTE);
 	}
 
 	public String getNome() {

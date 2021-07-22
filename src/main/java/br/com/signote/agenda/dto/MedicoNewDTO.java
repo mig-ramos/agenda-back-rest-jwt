@@ -11,8 +11,6 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.signote.agenda.domain.Perfil;
-
 public class MedicoNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,7 +24,6 @@ public class MedicoNewDTO implements Serializable {
 	private String codigo;
 	private Date instante;
 	private Boolean ativo;
-	private Perfil perfil;
 	
 	@NotEmpty(message="Preenchimento Obrigatório")
 	@Length(min=3, max=255, message="O tamanho deve ser entre 4 e 255 caracteres")
@@ -82,14 +79,6 @@ public class MedicoNewDTO implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
 	}
 
 	public String getNome() {

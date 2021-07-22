@@ -45,12 +45,12 @@ public class MedicoService {
 	}
 
 	public Medico fromDTO(@Valid MedicoDTO objDTO) {
-		return new Medico(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(), null, null, null, null, objDTO.getNome(),null, null);
+		return new Medico(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(), null, null, null, objDTO.getNome(),null, null);
 	}
 	
 	public Medico fromDTO(@Valid MedicoNewDTO objDTO) {
 		
-		Medico med = new Medico(null, objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getPerfil(), objDTO.getNome(),  objDTO.getCrm(), objDTO.getData_inscricao());
+		Medico med = new Medico(null, objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getNome(),  objDTO.getCrm(), objDTO.getData_inscricao());
 		Boolean ativo = objDTO.getAtivo() == null || !objDTO.getAtivo() ? false : true;
 		med.setAtivo(ativo);
 		Date instante = objDTO.getInstante() == null ? new Date():  objDTO.getInstante();

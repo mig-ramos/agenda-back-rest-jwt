@@ -9,8 +9,6 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.signote.agenda.domain.Perfil;
-
 public class PacienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,8 +24,6 @@ public class PacienteNewDTO implements Serializable {
 	private Date instante;
 	
 	private Boolean ativo;
-	
-	private Perfil perfil;
 	
 	@Column(length = 255, nullable = false)
 	private String nome;
@@ -76,14 +72,6 @@ public class PacienteNewDTO implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
 	}
 
 	public String getNome() {

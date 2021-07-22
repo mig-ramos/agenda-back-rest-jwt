@@ -11,7 +11,6 @@ import org.hibernate.annotations.ColumnDefault;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.signote.agenda.domain.Perfil;
 import br.com.signote.agenda.services.validation.UsuarioInsert;
 
 @UsuarioInsert
@@ -34,8 +33,6 @@ public class UsuarioNewDTO implements Serializable {
 
 	@ColumnDefault(value = "false")
 	private Boolean ativo;
-	
-	private Perfil perfil;	
 	
 	public UsuarioNewDTO() {
 	}
@@ -78,13 +75,5 @@ public class UsuarioNewDTO implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
 	}
 }
