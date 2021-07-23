@@ -96,7 +96,7 @@ SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 		tipoConsultaRepository.saveAll(Arrays.asList(tpCon1, tpCon2));
 		
-		Agenda age1 = new Agenda(null, esp2, med1, LocalDate.of(2021, 07, 25), hr1, tpCon1, pac1, null, null, null);
+		Agenda age1 = new Agenda(null, esp2, med1, LocalDate.of(2021, 07, 24), hr1, tpCon1, pac1, null, null, null);
 		Agenda age2 = new Agenda(null, esp1, med1, LocalDate.of(2021, 07, 25), hr2, tpCon2, pac1, null, "Paciente sem anomalia", null);
 		
 		agendaRepository.saveAll(Arrays.asList(age1,age2));
