@@ -14,6 +14,7 @@ import br.com.signote.agenda.domain.enums.Perfil;
  * Implentação de Autorização do Spring Security, através de seus contratos
  */
 public class UserSS implements UserDetails {
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String email;
@@ -75,6 +76,10 @@ public class UserSS implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	public boolean hasRole(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
 	}
 
 }
