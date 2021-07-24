@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.signote.agenda.domain.Agenda;
+import br.com.signote.agenda.domain.Medico;
 import br.com.signote.agenda.domain.Paciente;
 import br.com.signote.agenda.dto.AgendaDTO;
 import br.com.signote.agenda.dto.AgendaNewDTO;
@@ -31,6 +32,9 @@ public class AgendaService {
 	
 	@Autowired
 	private PacienteService pacienteService;
+	
+	@Autowired
+	private MedicoService medicoService;
 	
 	public Agenda find(Integer id) {
 		Optional<Agenda> obj = repo.findById(id);
@@ -84,15 +88,36 @@ public class AgendaService {
 	public List<Agenda> findAll() {
 		return repo.findAll();
 	}
-
+	
 	public Page<Agenda> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		UserSS user = UserService.authenticated();
 		if (user == null) {
 			throw new AuthorizationException("Acesso negado");
-		}
+		} 
+		
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy); 
+		return repo.findAll(pageRequest);	
+	}
+
+	public Page<Agenda> findPagePaciente(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		} 
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Paciente paciente = pacienteService.find(user.getId()); 
 		return repo.findByPaciente(paciente, pageRequest);	
+	}
+
+	public Page<Agenda> findPageMedico(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		} 
+		
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Medico medico = medicoService.find(user.getId()); 
+		return repo.findByMedico(medico, pageRequest);	
 	}
 }

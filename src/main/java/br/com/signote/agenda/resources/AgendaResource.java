@@ -69,12 +69,12 @@ public class AgendaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-//	@RequestMapping(method=RequestMethod.GET)
-//	public ResponseEntity<List<AgendaDTO>> findAll() {
-//		List<Agenda> list = service.findAll();
-//		List<AgendaDTO> listDTO = list.stream().map(obj -> new AgendaDTO(obj)).collect(Collectors.toList());
-//		return ResponseEntity.ok().body(listDTO);
-//	}
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<AgendaDTO>> findAll() {
+		List<Agenda> list = service.findAll();
+		List<AgendaDTO> listDTO = list.stream().map(obj -> new AgendaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+	}
 	
 //	/*
 //	 * No Postman:
@@ -83,24 +83,34 @@ public class AgendaResource {
 //	 * http://localhost:8080/especialidades/page?linesPerPage=3&page=1
 //	 * http://localhost:8080/especialidades/page?linesPerPage=3&page=1&direction=DESC
 //	 */
-//	@RequestMapping(value="/page", method=RequestMethod.GET)
-//	public ResponseEntity<Page<AgendaDTO>> findPage(
-//			@RequestParam(value="page", defaultValue="0") Integer page, 
-//			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-//			@RequestParam(value="orderBy", defaultValue="ultimaAlteracao") String orderBy, 
-//			@RequestParam(value="direction", defaultValue="DESC") String direction) {
-//		Page<Agenda> list = service.findPage(page, linesPerPage, orderBy, direction);
-//		Page<AgendaDTO> listDTO = list.map(obj -> new AgendaDTO(obj));
-//		return ResponseEntity.ok().body(listDTO);
-//	}
+	@RequestMapping(value="/page", method=RequestMethod.GET)
+	public ResponseEntity<Page<AgendaDTO>> findPage(
+			@RequestParam(value="page", defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue="ultimaAlteracao") String orderBy, 
+			@RequestParam(value="direction", defaultValue="DESC") String direction) {
+		Page<Agenda> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<AgendaDTO> listDTO = list.map(obj -> new AgendaDTO(obj));
+		return ResponseEntity.ok().body(listDTO);
+	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<Page<Agenda>> findPage(
+	@RequestMapping(value="/paciente",method=RequestMethod.GET)
+	public ResponseEntity<Page<Agenda>> findPagePaciente(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="dataDisponivel") String orderBy, 
 			@RequestParam(value="direction", defaultValue="DESC") String direction) {
-		Page<Agenda> list = service.findPage(page, linesPerPage, orderBy, direction);		
+		Page<Agenda> list = service.findPagePaciente(page, linesPerPage, orderBy, direction);		
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(value="/medico",method=RequestMethod.GET)
+	public ResponseEntity<Page<Agenda>> findPageMedico(
+			@RequestParam(value="page", defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue="dataDisponivel") String orderBy, 
+			@RequestParam(value="direction", defaultValue="DESC") String direction) {
+		Page<Agenda> list = service.findPageMedico(page, linesPerPage, orderBy, direction);		
 		return ResponseEntity.ok().body(list);
 	}
 

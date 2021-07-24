@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.signote.agenda.domain.Agenda;
+import br.com.signote.agenda.domain.Medico;
 import br.com.signote.agenda.domain.Paciente;
 
 
@@ -17,4 +18,5 @@ public interface AgendaRepository extends JpaRepository<Agenda, Integer> {
 
 	@Transactional(readOnly=true)
 	Page<Agenda> findByPaciente(Paciente paciente, Pageable pageRequest);
+	Page<Agenda> findByMedico(Medico medico, Pageable pageRequest);
 }
