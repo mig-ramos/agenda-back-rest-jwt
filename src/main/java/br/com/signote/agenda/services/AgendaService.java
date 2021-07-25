@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.signote.agenda.domain.Agenda;
 import br.com.signote.agenda.domain.Medico;
@@ -36,6 +37,9 @@ public class AgendaService {
 	@Autowired
 	private MedicoService medicoService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public Agenda find(Integer id) {
 		Optional<Agenda> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -50,13 +54,14 @@ public class AgendaService {
 	public Agenda fromDTO(@Valid AgendaNewDTO objDTO) {
 		Agenda age = new Agenda(null, objDTO.getEspecialidade(), objDTO.getMedico(), objDTO.getDataDisponivel(), objDTO.getHoraDisponivel(), objDTO.getTipoConsulta(), objDTO.getPaciente(), objDTO.getDataCadastro(), objDTO.getObservacao(), objDTO.getUltimaAlteracao());
 		
-
 		age.setDataCadastro(new Date());
 		return age;
 	}
 
+	@Transactional  //import org.springframework.transaction.annotation.Transactional;
 	public Agenda insert(Agenda obj) {
-		obj.setId(null); // Para garantir que seraá uma obj novo caso contrário será uma atualização
+		obj.setId(null); // Para garantir que será uma obj novo caso contrário será uma atualização
+		emailService.sendAgendaConfirmationEmail(obj);
 		return repo.save(obj);
 	}
 

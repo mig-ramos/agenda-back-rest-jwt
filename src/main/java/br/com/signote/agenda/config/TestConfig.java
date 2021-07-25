@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.com.signote.agenda.services.DBService;
+import br.com.signote.agenda.services.EmailService;
+import br.com.signote.agenda.services.MockEmailService;
 
 @Configuration
 @Profile("test")
@@ -22,8 +24,8 @@ public class TestConfig {
 		return true;
 	}
 	
-//	@Bean
-//	public EmailService emailService() {
-//		return new MockEmailService();
-//	}
+	@Bean
+	public EmailService emailService() {
+		return new MockEmailService();
+	}
 }

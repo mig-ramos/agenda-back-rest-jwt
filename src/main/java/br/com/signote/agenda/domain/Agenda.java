@@ -1,6 +1,7 @@
 package br.com.signote.agenda.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -186,5 +187,36 @@ public class Agenda implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss"); 
+		StringBuilder builder = new StringBuilder();
+		builder.append("Agendamento: ");
+		builder.append(id);
+		builder.append("\n");
+		builder.append("Especialidade: ");
+		builder.append(getEspecialidade().getNome());
+		builder.append("\n");
+		builder.append("Medico: ");
+		builder.append(getMedico().getNome());
+		builder.append("\n");
+		builder.append("Data programada: ");
+		builder.append(getDataDisponivel());
+		builder.append("Hora agendada= ");
+		builder.append(sdf.format(getHoraDisponivel()));
+		builder.append("\n");
+		builder.append("Tipo da Consulta: ");
+		builder.append(getTipoConsulta().getTipoConsulta());
+		builder.append("\n");
+		builder.append("Paciente: ");
+		builder.append(getPaciente().getNome());
+		builder.append("Cadastro: ");
+		builder.append(sdf.format(getDataCadastro()));
+	
+		return builder.toString();
 	}	
+	
+	
 }
