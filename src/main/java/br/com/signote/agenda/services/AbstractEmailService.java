@@ -25,9 +25,9 @@ public abstract class AbstractEmailService implements EmailService {
 		sm.setSubject("Agendamento confirmado! Código: " + obj.getId());
 		sm.setSentDate(new Date(System.currentTimeMillis()));
 		sm.setText(obj.toString());
-		return sm;
+				return sm;
 	}
-
+	
 	@Override
 	public void sendNewPasswordEmail(Paciente paciente, String newPass) {
 		SimpleMailMessage sm = prepareNewPasswordEmail(paciente, newPass);
@@ -43,4 +43,5 @@ public abstract class AbstractEmailService implements EmailService {
 		sm.setText("Nova senha: " + newPass);
 		return sm;
 	}
+	
 }

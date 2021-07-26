@@ -1,11 +1,11 @@
 package br.com.signote.agenda.domain.enums;
 
 public enum Perfil {
-	// ROLE_ é exigencia do Spring Security
-	ADMIN(1, "ROLE_ADMIN"), 
-	USUARIO(2, "ROLE_USUARIO"),
-	PACIENTE(3, "ROLE_PACIENTE"),
-	MEDICO(4, "ROLE_MEDICO");
+	// ROLE_ é exigencia do Spring Security	 
+	USUARIO(1, "ROLE_USUARIO"),
+	PACIENTE(2, "ROLE_PACIENTE"),
+	MEDICO(3, "ROLE_MEDICO"),
+	ADMIN(4, "ROLE_ADMIN");
 	
 	private int cod;
 	private String descricao;

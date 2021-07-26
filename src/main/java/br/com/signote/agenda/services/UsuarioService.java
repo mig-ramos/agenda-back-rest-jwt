@@ -55,10 +55,10 @@ public class UsuarioService {
 	}
 
 	public Usuario fromDTO(@Valid UsuarioDTO objDTO) {
-		return new Usuario(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(),null,null,null);
+		return new Usuario(objDTO.getId(), objDTO.getEmail(), objDTO.getSenha(),null,null,null, null);
 	}
 	public Usuario fromDTO(@Valid UsuarioNewDTO objDTO) {		
-		Usuario usu = new Usuario(null, objDTO.getEmail(), pe.encode(objDTO.getSenha()), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo());
+		Usuario usu = new Usuario(null, objDTO.getEmail(), pe.encode(objDTO.getSenha()), objDTO.getCodigo(), null, objDTO.getInstante(), objDTO.getAtivo());
 		Boolean ativo = objDTO.getAtivo() == null || !objDTO.getAtivo() ? false : true;
 		usu.setAtivo(ativo);
 		Date instante = objDTO.getInstante() == null ? new Date():  objDTO.getInstante();

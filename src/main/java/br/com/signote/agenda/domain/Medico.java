@@ -19,8 +19,8 @@ import br.com.signote.agenda.domain.enums.Perfil;
 public class Medico extends Usuario{
 	private static final long serialVersionUID = 1L;	
 	
-	@Column(length = 255, nullable = false)
-	private String nome;
+//	@Column(length = 255, nullable = false)
+//	private String nome;
 	
 	@Column(nullable = false)
 	private Integer crm;
@@ -41,21 +41,21 @@ public class Medico extends Usuario{
 		addPerfil(Perfil.MEDICO);
 	}	
 		
-	public Medico(Integer id, String email, String senha, String codigo, Date instante, Boolean ativo, String nome, Integer crm, Date data_inscricao) {
-		super(id, email, senha, codigo, instante, ativo);
-		this.nome = nome;
+	public Medico(Integer id, String nome, String email, String senha, String codigo, Date instante, Boolean ativo, Integer crm, Date data_inscricao) {
+		super(id, nome, email, senha, codigo, instante, ativo);
+//		this.nome = nome;
 		this.crm = crm;
 		this.data_inscricao = data_inscricao;
 		addPerfil(Perfil.MEDICO);
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+//	public String getNome() {
+//		return nome;
+//	}
+//
+//	public void setNome(String nome) {
+//		this.nome = nome;
+//	}
 
 	public Integer getCrm() {
 		return crm;

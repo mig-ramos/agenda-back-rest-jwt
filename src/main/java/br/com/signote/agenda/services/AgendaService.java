@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.signote.agenda.domain.Agenda;
 import br.com.signote.agenda.domain.Medico;
@@ -53,16 +52,16 @@ public class AgendaService {
 
 	public Agenda fromDTO(@Valid AgendaNewDTO objDTO) {
 		Agenda age = new Agenda(null, objDTO.getEspecialidade(), objDTO.getMedico(), objDTO.getDataDisponivel(), objDTO.getHoraDisponivel(), objDTO.getTipoConsulta(), objDTO.getPaciente(), objDTO.getDataCadastro(), objDTO.getObservacao(), objDTO.getUltimaAlteracao());
-		
 		age.setDataCadastro(new Date());
 		return age;
 	}
 
-	@Transactional  //import org.springframework.transaction.annotation.Transactional;
+//	@Transactional  //import org.springframework.transaction.annotation.Transactional;
 	public Agenda insert(Agenda obj) {
 		obj.setId(null); // Para garantir que será uma obj novo caso contrário será uma atualização
+		repo.save(obj);
 		emailService.sendAgendaConfirmationEmail(obj);
-		return repo.save(obj);
+		return obj;
 	}
 
 	public Agenda fromDTO(@Valid AgendaDTO objDTO) {

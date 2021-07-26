@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,7 +27,7 @@ public class HoraDisponivel implements Serializable {
 	private LocalTime horaMinuto;
 	
 	@OneToMany
-	@JoinColumn(name="horaMinuto_id")
+//	@JoinColumn(name="horaMinuto_id")
 	private List<Agenda> agendas = new ArrayList<>();
 	
 	

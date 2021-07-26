@@ -1,7 +1,6 @@
 package br.com.signote.agenda.domain;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -69,7 +68,7 @@ public class Agenda implements Serializable {
 	public Agenda() {
 	}
 
-	public Agenda(Integer id, Especialidade especialidade, Medico medico,LocalDate dataDisponivel, HoraDisponivel horaDisponivel, 
+	public Agenda(Integer id, Especialidade especialidade, Medico medico, LocalDate dataDisponivel, HoraDisponivel horaDisponivel, 
 			TipoConsulta tipoConsulta, Paciente paciente, Date dataCadastro, String observacao, Date ultimaAlteracao) {
 		super();
 		this.id = id;
@@ -162,7 +161,7 @@ public class Agenda implements Serializable {
 
 	public void setUltimaAlteracao(Date ultimaAlteracao) {
 		this.ultimaAlteracao = ultimaAlteracao;
-	}
+	}	
 
 	@Override
 	public int hashCode() {
@@ -191,32 +190,22 @@ public class Agenda implements Serializable {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss"); 
 		StringBuilder builder = new StringBuilder();
-		builder.append("Agendamento: ");
-		builder.append(id);
 		builder.append("\n");
-		builder.append("Especialidade: ");
-		builder.append(getEspecialidade().getNome());
+		builder.append("AGENDAMENTO: ");
 		builder.append("\n");
-		builder.append("Medico: ");
-		builder.append(getMedico().getNome());
+		builder.append("Data= ");
+		builder.append(dataDisponivel);
 		builder.append("\n");
-		builder.append("Data programada: ");
-		builder.append(getDataDisponivel());
-		builder.append("Hora agendada= ");
-		builder.append(sdf.format(getHoraDisponivel()));
+		builder.append("Hora= ");
+		builder.append(getHoraDisponivel().getId());
 		builder.append("\n");
-		builder.append("Tipo da Consulta: ");
-		builder.append(getTipoConsulta().getTipoConsulta());
+		builder.append("Consulta= ");
+		builder.append(getTipoConsulta().getId());
 		builder.append("\n");
-		builder.append("Paciente: ");
-		builder.append(getPaciente().getNome());
-		builder.append("Cadastro: ");
-		builder.append(sdf.format(getDataCadastro()));
-	
+		builder.append("Cadastro= ");
+		builder.append(dataCadastro);
+		builder.append("\n");
 		return builder.toString();
 	}	
-	
-	
 }
