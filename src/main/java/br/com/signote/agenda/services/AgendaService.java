@@ -60,7 +60,8 @@ public class AgendaService {
 	public Agenda insert(Agenda obj) {
 		obj.setId(null); // Para garantir que será uma obj novo caso contrário será uma atualização
 		repo.save(obj);
-		emailService.sendAgendaConfirmationEmail(obj);
+		emailService.sendAgendaConfirmationEmail(obj);  // Substitui para HTML
+		emailService.sendAgendaConfirmationHtmlEmail(obj);
 		return obj;
 	}
 

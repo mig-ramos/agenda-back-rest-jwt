@@ -24,7 +24,7 @@ public class TestConfig {
 		return true;
 	}
 	
-	@Bean
+	@Bean // Todo método com @Bean, vai estar disponível para todo o sistema
 	public EmailService emailService() {
 		return new MockEmailService();
 	}

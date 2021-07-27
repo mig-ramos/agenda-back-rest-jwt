@@ -26,9 +26,8 @@ public class HoraDisponivel implements Serializable {
 	@Column(unique = true, nullable = false)
 	private LocalTime horaMinuto;
 	
-	@OneToMany
-//	@JoinColumn(name="horaMinuto_id")
-	private List<Agenda> agendas = new ArrayList<>();
+	@OneToMany(mappedBy = "horaDisponivel")
+	private List<Agenda> agenda = new ArrayList<>();
 	
 	
 	public HoraDisponivel() {
