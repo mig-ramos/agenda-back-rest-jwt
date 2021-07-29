@@ -3,7 +3,6 @@ package br.com.signote.agenda.services;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.signote.agenda.domain.Agenda;
 import br.com.signote.agenda.domain.Especialidade;
-import br.com.signote.agenda.domain.HoraDisponivel;
+import br.com.signote.agenda.domain.Hora;
 import br.com.signote.agenda.domain.Medico;
 import br.com.signote.agenda.domain.Paciente;
 import br.com.signote.agenda.domain.TipoConsulta;
@@ -65,14 +64,14 @@ SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
 		Medico med2 = new Medico(null, "Miguel A Ramos", "mig.ramos10@gmail.com", pe.encode("123"),"789123",sdf1.parse("14/10/1959 12:45"), true, 435465, sdf2.parse("14/05/1959"));
 		
-		HoraDisponivel hr1 = new HoraDisponivel(null, LocalTime.of(8, 0));
-		HoraDisponivel hr2 = new HoraDisponivel(null, LocalTime.of(9, 0));
-		HoraDisponivel hr3 = new HoraDisponivel(null, LocalTime.of(10, 0));
-		HoraDisponivel hr4 = new HoraDisponivel(null, LocalTime.of(11, 0));
-		HoraDisponivel hr5 = new HoraDisponivel(null, LocalTime.of(13, 0));
-		HoraDisponivel hr6 = new HoraDisponivel(null, LocalTime.of(14, 0));
-		HoraDisponivel hr7 = new HoraDisponivel(null, LocalTime.of(15, 0));
-		HoraDisponivel hr8 = new HoraDisponivel(null, LocalTime.of(16, 0));	
+		Hora hr1 = new Hora(null, "8:00");
+		Hora hr2 = new Hora(null, "9:00");
+		Hora hr3 = new Hora(null, "10:00");
+		Hora hr4 = new Hora(null, "11:00");
+		Hora hr5 = new Hora(null, "13:00");
+		Hora hr6 = new Hora(null, "14:00");
+		Hora hr7 = new Hora(null, "15:00");
+		Hora hr8 = new Hora(null, "16:00");
 		
 		Especialidade esp3 = new Especialidade(null,"Otorrino", "Descrição do Otorrino");
 		Especialidade esp4 = new Especialidade(null,"Geriatra", "Descrição do Geriatra");

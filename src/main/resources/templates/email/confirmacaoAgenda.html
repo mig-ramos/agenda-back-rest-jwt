@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title th:remove="all">Order Confirmation</title>
+<title th:remove="all">Agendamento confirmado</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<div>
+	
 		<h1>
-			Agendamento número: <span th:text="${agenda.id}"> </span>
+			TCC - Agendamento Online:  <!--  <span th:text="${agenda.id}"> </span>  -->
 		</h1>
 		<p>
-			Instante: <span
-				th:text="${#dates.format(agenda.instante, 'dd/MM/yyyy hh:mm')}"></span>
+			<b>Agendado para: </b><span
+				th:text="${#temporals.format(agenda.dataDisponivel, 'dd/MM/yyyy')} "></span>
+		</p>	
+		<p>
+			<b>Horário: </b><span
+				th:text="${agenda.hora.hora}"></span>
+		</p>	
+		<p>
+			<b>Paciente: </b><span th:text="${agenda.usuario.nome}"></span>
+		</p>
+		<h3>Detalhes do agendamento:</h3>
+		<p>
+			<b>Tipo: </b><span th:text="${agenda.tipoConsulta.tipoConsulta}"></span>
 		</p>
 		<p>
-			Paciente: <span th:text="${agenda.usuario.nome}"></span>
+			<b>Especialidade: </b><span th:text="${agenda.especialidade.nome}"></span>
 		</p>
 		<p>
-		<!--	Situação do pagamento: <span
-			  	th:text="${pedido.pagamento.estado.descricao}"></span> -->
+			<b>Médico: </b><span th:text="${agenda.medico.nome}"></span>
 		</p>
-		<h3>Detalhes do pedido:</h3>
-		<table border="1">
-			<tr>
-				<th>Produto</th>
-				<th>Quantidade</th>
-				<th>Preço unitário</th>
-				<th>Subtotal</th>
-			</tr> 
-	<!--		<tr th:each="item : ${pedido.itens}">
-				<td th:text="${item.produto.nome}">nome</td>
-				<td th:text="${item.quantidade}">quantidade</td>
-				<td
-					th:text="${#numbers.formatDecimal(item.preco, 0, 'POINT', 2,
-'COMMA')}">preco</td>
-				<td
-					th:text="${#numbers.formatDecimal(item.subTotal, 0, 'POINT', 2,
-'COMMA')}">subTotal</td>
-			</tr>  -->
-		</table>
+	
 		<p>
-			Valor total: <span></span>
-		</p>
+			<b>Solicitado em: </b><span
+				th:text="${#dates.format(agenda.dataCadastro)} "></span>
+		</p>	
 	</div>
 </body>
 </html>

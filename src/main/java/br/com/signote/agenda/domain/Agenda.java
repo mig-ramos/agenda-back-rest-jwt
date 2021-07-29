@@ -40,16 +40,16 @@ public class Agenda implements Serializable {
 	private LocalDate dataDisponivel;
 	
 	@ManyToOne
-	@JoinColumn(name="horaDisponivel_id")
-	private HoraDisponivel horaDisponivel;
+	@JoinColumn(name="hora_id")
+	private Hora hora;
 	
 	@ManyToOne
 	@JoinColumn(name="tipoConsulta_id")
 	private TipoConsulta tipoConsulta;
 	
 	@ManyToOne
-	@JoinColumn(name="paciente_id")
-	private Paciente paciente;
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@CreationTimestamp
@@ -68,16 +68,16 @@ public class Agenda implements Serializable {
 	public Agenda() {
 	}
 
-	public Agenda(Integer id, Especialidade especialidade, Medico medico, LocalDate dataDisponivel, HoraDisponivel horaDisponivel, 
-			TipoConsulta tipoConsulta, Paciente paciente, Date dataCadastro, String observacao, Date ultimaAlteracao) {
+	public Agenda(Integer id, Especialidade especialidade, Medico medico, LocalDate dataDisponivel, Hora hora, 
+			TipoConsulta tipoConsulta, Usuario usuario, Date dataCadastro, String observacao, Date ultimaAlteracao) {
 		super();
 		this.id = id;
 		this.especialidade = especialidade;
 		this.medico = medico;
 		this.dataDisponivel = dataDisponivel;
-		this.horaDisponivel = horaDisponivel;
+		this.hora = hora;
 		this.tipoConsulta = tipoConsulta;
-		this.paciente = paciente;
+		this.usuario = usuario;
 		this.dataCadastro = dataCadastro;
 		this.Observacao = observacao;
 		this.ultimaAlteracao = ultimaAlteracao;
@@ -115,12 +115,12 @@ public class Agenda implements Serializable {
 		this.dataDisponivel = dataDisponivel;
 	}
 
-	public HoraDisponivel getHoraDisponivel() {
-		return horaDisponivel;
+	public Hora getHora() {
+		return hora;
 	}
 
-	public void setHoraDisponivel(HoraDisponivel horaDisponivel) {
-		this.horaDisponivel = horaDisponivel;
+	public void setHora(Hora hora) {
+		this.hora = hora;
 	}
 
 	public TipoConsulta getTipoConsulta() {
@@ -131,12 +131,12 @@ public class Agenda implements Serializable {
 		this.tipoConsulta = tipoConsulta;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Date getDataCadastro() {
@@ -194,14 +194,17 @@ public class Agenda implements Serializable {
 		builder.append("\n");
 		builder.append("AGENDAMENTO: ");
 		builder.append("\n");
+		builder.append("Paciente: ");
+		builder.append(usuario.getNome());
+		builder.append("\n");
 		builder.append("Data= ");
 		builder.append(dataDisponivel);
 		builder.append("\n");
 		builder.append("Hora= ");
-		builder.append(getHoraDisponivel().getId());
+		builder.append(hora.getHora());
 		builder.append("\n");
 		builder.append("Consulta= ");
-		builder.append(getTipoConsulta().getId());
+		builder.append(getTipoConsulta().getTipoConsulta());
 		builder.append("\n");
 		builder.append("Cadastro= ");
 		builder.append(dataCadastro);

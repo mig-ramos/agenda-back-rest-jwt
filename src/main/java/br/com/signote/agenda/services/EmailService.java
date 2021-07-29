@@ -5,7 +5,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.SimpleMailMessage;
 
 import br.com.signote.agenda.domain.Agenda;
-import br.com.signote.agenda.domain.Paciente;
+import br.com.signote.agenda.domain.Usuario;
 
 public interface EmailService {
 
@@ -14,7 +14,7 @@ public interface EmailService {
 	// Versao de texto plano
 	void sendEmail(SimpleMailMessage msg);
 
-	void sendNewPasswordEmail(Paciente paciente, String newPass);
+	void sendNewPasswordEmail(Usuario usuario, String newPass);
 	
 	// Versao de HTML
 	void sendAgendaConfirmationHtmlEmail(Agenda obj);

@@ -35,13 +35,6 @@ public class AgendaResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	// http://localhost:8080/usuarios/email?value=m.ephemeris@gmail.com
-	@RequestMapping(value="/email", method=RequestMethod.GET)
-	public ResponseEntity<Agenda> find(@RequestParam(value="value") String email) {		
-		Agenda obj = service.findByEmail(email);
-		return ResponseEntity.ok().body(obj);
-	}
-	
 	/*
 	 *  Para que este método salve a partir da url - usa-se @RequestBody
 	 *  convertendo o objeto Json e Java automaticamente

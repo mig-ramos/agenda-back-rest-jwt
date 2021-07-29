@@ -18,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.signote.agenda.domain.Agenda;
 import br.com.signote.agenda.domain.Especialidade;
-import br.com.signote.agenda.domain.HoraDisponivel;
+import br.com.signote.agenda.domain.Hora;
 import br.com.signote.agenda.domain.Medico;
-import br.com.signote.agenda.domain.Paciente;
 import br.com.signote.agenda.domain.TipoConsulta;
+import br.com.signote.agenda.domain.Usuario;
 
 public class AgendaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -40,16 +40,16 @@ public class AgendaDTO implements Serializable {
 	private LocalDate dataDisponivel;
 
 	@ManyToOne
-	@JoinColumn(name = "horaDisponivel_id")
-	private HoraDisponivel horaDisponivel;
+	@JoinColumn(name = "hora_id")
+	private Hora hora;
 
 	@ManyToOne
 	@JoinColumn(name = "tipoConsulta_id")
 	private TipoConsulta tipoConsulta;
 
 	@ManyToOne
-	@JoinColumn(name = "paciente_id")
-	private Paciente paciente;
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataCadastro;
@@ -70,9 +70,9 @@ public class AgendaDTO implements Serializable {
 		especialidade = obj.getEspecialidade();
 		medico = obj.getMedico();
 		dataDisponivel = obj.getDataDisponivel();
-		horaDisponivel = obj.getHoraDisponivel();
+		hora = obj.getHora();
 		tipoConsulta = obj.getTipoConsulta();
-		paciente = obj.getPaciente();
+		usuario = obj.getUsuario();
 		dataCadastro = obj.getDataCadastro();
 		observacao = obj.getObservacao();
 		ultimaAlteracao = obj.getUltimaAlteracao();
@@ -110,12 +110,12 @@ public class AgendaDTO implements Serializable {
 		this.dataDisponivel = dataDisponivel;
 	}
 
-	public HoraDisponivel getHoraDisponivel() {
-		return horaDisponivel;
+	public Hora getHora() {
+		return hora;
 	}
 
-	public void setHoraDisponivel(HoraDisponivel horaDisponivel) {
-		this.horaDisponivel = horaDisponivel;
+	public void setHora(Hora hora) {
+		this.hora = hora;
 	}
 
 	public TipoConsulta getTipoConsulta() {
@@ -126,12 +126,12 @@ public class AgendaDTO implements Serializable {
 		this.tipoConsulta = tipoConsulta;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Date getDataCadastro() {

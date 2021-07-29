@@ -1,8 +1,10 @@
 package br.com.signote.agenda.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -52,6 +55,10 @@ public class Usuario implements Serializable {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Agenda> agendas = new ArrayList<>();
 	
 	public Usuario() {
 		addPerfil(Perfil.USUARIO);
@@ -131,6 +138,14 @@ public class Usuario implements Serializable {
 	
 	public void addPerfil(Perfil perfil) {
 		perfis.add(perfil.getCod());
+	}	
+
+	public List<Agenda> getAgendas() {
+		return agendas;
+	}
+
+	public void setAgendas(List<Agenda> agendas) {
+		this.agendas = agendas;
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package br.com.signote.agenda.domain;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,31 +11,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
-public class HoraDisponivel implements Serializable {
+public class Hora implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonFormat(pattern = "HH:mm")
-	@Column(unique = true, nullable = false)
-	private LocalTime horaMinuto;
+	@Column(unique = true, length = 5, nullable = false)
+	private String hora;
 	
-	@OneToMany(mappedBy = "horaDisponivel")
+	@OneToMany(mappedBy = "hora")
 	private List<Agenda> agenda = new ArrayList<>();
 	
 	
-	public HoraDisponivel() {
+	public Hora() {
 	}
 
-	public HoraDisponivel(Integer id, LocalTime horaMinuto) {
+	public Hora(Integer id, String hora) {
 		super();
 		this.id = id;
-		this.horaMinuto = horaMinuto;
+		this.hora = hora;
 	}
 
 	public Integer getId() {
@@ -47,12 +43,12 @@ public class HoraDisponivel implements Serializable {
 		this.id = id;
 	}
 
-	public LocalTime getHoraMinuto() {
-		return horaMinuto;
+	public String getHora() {
+		return hora;
 	}
 
-	public void setHoraMinuto(LocalTime horaMinuto) {
-		this.horaMinuto = horaMinuto;
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 	@Override
@@ -71,7 +67,7 @@ public class HoraDisponivel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HoraDisponivel other = (HoraDisponivel) obj;
+		Hora other = (Hora) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.signote.agenda.domain.Agenda;
 import br.com.signote.agenda.domain.Medico;
-import br.com.signote.agenda.domain.Paciente;
+import br.com.signote.agenda.domain.Usuario;
 import br.com.signote.agenda.dto.AgendaDTO;
 import br.com.signote.agenda.dto.AgendaNewDTO;
 import br.com.signote.agenda.repositories.AgendaRepository;
@@ -31,7 +31,7 @@ public class AgendaService {
 	private AgendaRepository repo;
 	
 	@Autowired
-	private PacienteService pacienteService;
+	private UsuarioService usuarioService;
 	
 	@Autowired
 	private MedicoService medicoService;
@@ -45,13 +45,8 @@ public class AgendaService {
 				"Objeto não encontrado! id: " + id + ", Tipo: " + Agenda.class.getName()));
 	}
 
-	public Agenda findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Agenda fromDTO(@Valid AgendaNewDTO objDTO) {
-		Agenda age = new Agenda(null, objDTO.getEspecialidade(), objDTO.getMedico(), objDTO.getDataDisponivel(), objDTO.getHoraDisponivel(), objDTO.getTipoConsulta(), objDTO.getPaciente(), objDTO.getDataCadastro(), objDTO.getObservacao(), objDTO.getUltimaAlteracao());
+		Agenda age = new Agenda(null, objDTO.getEspecialidade(), objDTO.getMedico(), objDTO.getDataDisponivel(), objDTO.getHora(), objDTO.getTipoConsulta(), objDTO.getUsuario(), objDTO.getDataCadastro(), objDTO.getObservacao(), objDTO.getUltimaAlteracao());
 		age.setDataCadastro(new Date());
 		return age;
 	}
@@ -60,7 +55,7 @@ public class AgendaService {
 	public Agenda insert(Agenda obj) {
 		obj.setId(null); // Para garantir que será uma obj novo caso contrário será uma atualização
 		repo.save(obj);
-		emailService.sendAgendaConfirmationEmail(obj);  // Substitui para HTML
+//		emailService.sendAgendaConfirmationEmail(obj);  // Substitui para HTML
 		emailService.sendAgendaConfirmationHtmlEmail(obj);
 		return obj;
 	}
@@ -111,8 +106,8 @@ public class AgendaService {
 		} 
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Paciente paciente = pacienteService.find(user.getId()); 
-		return repo.findByPaciente(paciente, pageRequest);	
+		Usuario usuario = usuarioService.find(user.getId()); 
+		return repo.findByUsuario(usuario, pageRequest);	
 	}
 
 	public Page<Agenda> findPageMedico(Integer page, Integer linesPerPage, String orderBy, String direction) {

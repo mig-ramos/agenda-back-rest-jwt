@@ -26,7 +26,7 @@ public class DevConfig {
 	public boolean instantiateDatabase() throws ParseException {
 		
 		if (!"create".equals(strategy)) {
-			return false;
+			return true; // Não recria o banco de dados
 		}
 		
 		dbService.instantiateTestDatabase();

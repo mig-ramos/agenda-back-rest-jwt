@@ -1,14 +1,10 @@
 package br.com.signote.agenda.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.signote.agenda.domain.enums.Perfil;
 
@@ -22,9 +18,9 @@ public class Paciente extends Usuario{
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data_nascimento;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "paciente")
-	private List<Agenda> agendas = new ArrayList<>();
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "paciente")
+//	private List<Agenda> agendas = new ArrayList<>();
 	
 	public Paciente() {
 		addPerfil(Perfil.PACIENTE);
@@ -53,11 +49,11 @@ public class Paciente extends Usuario{
 		this.data_nascimento = data_nascimento;
 	}
 
-	public List<Agenda> getAgendas() {
-		return agendas;
-	}
-
-	public void setAgendas(List<Agenda> agendas) {
-		this.agendas = agendas;
-	}
+//	public List<Agenda> getAgendas() {
+//		return agendas;
+//	}
+//
+//	public void setAgendas(List<Agenda> agendas) {
+//		this.agendas = agendas;
+//	}
 }

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.signote.agenda.domain.HoraDisponivel;
-import br.com.signote.agenda.dto.HoraDisponivelDTO;
+import br.com.signote.agenda.domain.Hora;
+import br.com.signote.agenda.dto.HoraDTO;
 import br.com.signote.agenda.services.HoraDisponivelService;
 
 @RestController
@@ -29,8 +29,8 @@ public class HoraDisponivelResource {
 	private HoraDisponivelService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<HoraDisponivel> find(@PathVariable Integer id) {
-		HoraDisponivel obj = service.find(id);		
+	public ResponseEntity<Hora> find(@PathVariable Integer id) {
+		Hora obj = service.find(id);		
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -47,8 +47,8 @@ public class HoraDisponivelResource {
 //	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody HoraDisponivelDTO objDTO){	
-		HoraDisponivel obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> insert(@Valid @RequestBody HoraDTO objDTO){	
+		Hora obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -56,8 +56,8 @@ public class HoraDisponivelResource {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody HoraDisponivelDTO objDto, @PathVariable Integer id) {
-		HoraDisponivel obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody HoraDTO objDto, @PathVariable Integer id) {
+		Hora obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -70,9 +70,9 @@ public class HoraDisponivelResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<HoraDisponivelDTO>> findAll() {
-		List<HoraDisponivel> list = service.findAll();
-		List<HoraDisponivelDTO> listDTO = list.stream().map(obj -> new HoraDisponivelDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<HoraDTO>> findAll() {
+		List<Hora> list = service.findAll();
+		List<HoraDTO> listDTO = list.stream().map(obj -> new HoraDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
@@ -85,13 +85,13 @@ public class HoraDisponivelResource {
 	 */
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<HoraDisponivelDTO>> findPage(
+	public ResponseEntity<Page<HoraDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="horaMinuto") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<HoraDisponivel> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<HoraDisponivelDTO> listDTO = list.map(obj -> new HoraDisponivelDTO(obj));
+		Page<Hora> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<HoraDTO> listDTO = list.map(obj -> new HoraDTO(obj));
 		return ResponseEntity.ok().body(listDTO);
 	}
 }

@@ -12,8 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import br.com.signote.agenda.domain.HoraDisponivel;
-import br.com.signote.agenda.dto.HoraDisponivelDTO;
+import br.com.signote.agenda.domain.Hora;
+import br.com.signote.agenda.dto.HoraDTO;
 import br.com.signote.agenda.repositories.HoraDisponivelRepository;
 import br.com.signote.agenda.services.exceptions.DataIntegrityException;
 import br.com.signote.agenda.services.exceptions.ObjectNotFoundException;
@@ -24,29 +24,29 @@ public class HoraDisponivelService {
 	@Autowired
 	private HoraDisponivelRepository repo;
 
-	public HoraDisponivel find(Integer id) {
-		Optional<HoraDisponivel> obj = repo.findById(id);
+	public Hora find(Integer id) {
+		Optional<Hora> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! id: " + id + ", Tipo: " + HoraDisponivel.class.getName()));
+				"Objeto não encontrado! id: " + id + ", Tipo: " + Hora.class.getName()));
 	}
 	
-	public HoraDisponivel insert(HoraDisponivel obj) {
+	public Hora insert(Hora obj) {
 		obj.setId(null); // Para garantir que seraá uma obj novo caso contrário será uma atualização
 		return repo.save(obj);
 	}
 
-	public HoraDisponivel update(HoraDisponivel obj) {
-		HoraDisponivel newObj = find(obj.getId());
+	public Hora update(Hora obj) {
+		Hora newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
 
-	private void updateData(HoraDisponivel newObj, HoraDisponivel obj) {
-		newObj.setHoraMinuto(obj.getHoraMinuto());		
+	private void updateData(Hora newObj, Hora obj) {
+		newObj.setHora(obj.getHora());		
 	}
 
-	public HoraDisponivel fromDTO(@Valid HoraDisponivelDTO objDto) {
-		return new HoraDisponivel(objDto.getId(), objDto.getHoraMinuto());
+	public Hora fromDTO(@Valid HoraDTO objDto) {
+		return new Hora(objDto.getId(), objDto.getHoraMinuto());
 	}
 	
 	public void delete(Integer id) {
@@ -58,12 +58,12 @@ public class HoraDisponivelService {
 		}
 	}
 	
-	public List<HoraDisponivel> findAll(){
+	public List<Hora> findAll(){
 		return repo.findAll();
 	}
 	
 	
-	public Page<HoraDisponivel> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+	public Page<Hora> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy); 
 		return repo.findAll(pageRequest);
 	}
