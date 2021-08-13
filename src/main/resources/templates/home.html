@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agendamento de especialistas online">
+    <link rel="icon" href="imgs/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ephemeris - Agendamento Online!</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="w3-bar w3-green ">
+                <a href="#" class="w3-bar-item w3-button">Ephemeris</a>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button w3-hide-small">Administrador <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-hide-small">
+                        <a href="especialidade/especialidade.html"
+                            class="w3-bar-item w3-button w3-hide-small">Especialidades</a>
+                        <hr>
+                        <a href="usuario/cadastro.html" class="w3-bar-item w3-button w3-hide-small">Cadastro de
+                            Usuários</a>
+                        <a href="usuario/usuarios_cadastrados.html" class="w3-bar-item w3-button w3-hide-small">Lista de
+                            Usuários</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button">Medico <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="medico/cadastro.html" class="w3-bar-item w3-button">Dados Cadastrais</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="medico/consultas.html" class="w3-bar-item w3-button">Consultas Agendadas</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button">Paciente <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="paciente/cadastro.html" class="w3-bar-item w3-buttone">Cadastrar Dados</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="agendamento/cadastro.html" class="w3-bar-item w3-button">Agendar Consultas</a>
+                        <a href="agendamento/historico_paciente.html" class="w3-bar-item w3-button">Histórico de
+                            Consultas</a>
+                    </div>
+                </div>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                    onclick="myFunction()">&#9776;</a>
+                <a href="cadastrar-se.html"
+                    class="w3-bar-item w3-button w3-green w3-right w3-hide-small">Cadastrar-se</a>
+                <a href="login.html" class="w3-bar-item w3-button w3-green w3-right w3-hide-small">Login</a>
+            </div>
+
+            <div id="demo" class="w3-bar-block w3-green w3-hide w3-hide-large w3-hide-medium">
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button">Administrador <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="especialidade/especialidade.html" class="w3-bar-item w3-button">Especialidades</a>
+                        <hr>
+                        <a href="usuario/cadastro.html" class="w3-bar-item w3-button">Cadastro de Usuários</a>
+                        <a href="usuario/usuarios_cadastrados.html" class="w3-bar-item w3-button">Lista de Usuários</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button">Medico <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="medico/cadastro.html" class="w3-bar-item w3-button">Dados Cadastrais</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="medico/consultas.html" class="w3-bar-item w3-button">Consultas Agendadas</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button">Paciente <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="paciente/cadastro.html" class="w3-bar-item w3-buttone">Cadastrar Dados</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="agendamento/cadastro.html" class="w3-bar-item w3-button">Agendar Consultas</a>
+                        <a href="agendamento/historico_paciente.html" class="w3-bar-item w3-button">Histórico de
+                            Consultas</a>
+                    </div>
+                </div>
+                <a href="cadastrar-se.html" class="w3-bar-item w3-button w3-green w3-right">Cadastrar-se</a>
+                <a href="login.html" class="w3-bar-item w3-button w3-green w3-right">Login</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1 class="w3-hide">Ephemeris</h1>
+        <div class="w3-container">
+            <h2 class="w3-center">Ephemeris - Agenda de Especialistas Online</h2>
+            <p class="w3-center w3-large">Sua saúde em primeiro lugar!</p>
+        </div>
+
+        <darticle class="w3-row w3-border">
+            <div class="w3-third w3-container">
+                <div>
+                    <img src="imgs/medicina_2.jpg" alt="Person" class="w3-image w3-round">
+                </div>
+                <h3>Cardiologista</h3>
+                <p>O Cardiologista é aquele que cuida da saúde do coração. Assim, os médicos que atuam nessa área são
+                    responsáveis pela consulta, diagnóstico, tratamento de doenças e disfunções ligadas ao sistema
+                    cardiovascular.</p>
+            </div>
+            <div class="w3-third w3-container">
+                <div>
+                    <img src="imgs/medicina_6.jpg" alt="Person" class="w3-image w3-round">
+                </div>
+                <h3>Clínico Geral</h3>
+                <p>O clínico geral é o profissional responsável por diagnosticar doenças, desde as mais simples até as
+                    mais complexas. Caso verifique que a atual situação do paciente precisa da interferência de um
+                    especialista, ele realiza o encaminhamento necessário.</p>
+            </div>
+            <div class="w3-third w3-container">
+                <div>
+                    <img src="imgs/medicina_4.jpg" alt="Person" class="w3-image w3-round">
+                </div>
+                <h3>Geriatra</h3>
+                <p>O médico geriatra atende o idoso, diferenciando as mudanças anatômicas, funcionais e psicológicas
+                    próprias do processo natural de envelhecimento, das alterações decorrentes de doenças nessa fase da
+                    vida. Na prática, muitas vezes, esse limite é impreciso.</p>
+            </div>
+        </darticle>
+    </main>
+    <footer class="w3-container w3-green w3-margin-top">
+        <div class="w3-third">
+            <p>&copy;2021 - Todos direitos reservados.</p>
+        </div>
+        <div class="w3-third">
+            <h5>TCC - Agenda de especialistas online.</h5>
+        </div>
+        <div class="w3-third">
+            <p>Santos - SP - Brasil</p>
+        </div>
+    </footer>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+</body>
+
+</html>
