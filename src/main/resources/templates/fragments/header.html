@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<header th:fragment="cabecalho">
+        <nav>
+            <div class="w3-bar w3-green ">
+                <a href="#" class="w3-bar-item w3-button">Ephemeris</a>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button w3-hide-small">Administrador <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-hide-small">
+                        <a href="especialidade/especialidade.html"
+                            class="w3-bar-item w3-button w3-hide-small">Especialidades</a>
+                        <hr>
+                        <a href="usuario/cadastro.html" class="w3-bar-item w3-button w3-hide-small">Cadastro de
+                            Usuários</a>
+                        <a href="usuario/usuarios_cadastrados.html" class="w3-bar-item w3-button w3-hide-small">Lista de
+                            Usuários</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button">Medico <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="medico/cadastro.html" class="w3-bar-item w3-button">Dados Cadastrais</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="medico/consultas.html" class="w3-bar-item w3-button">Consultas Agendadas</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button">Paciente <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="paciente/cadastro.html" class="w3-bar-item w3-buttone">Cadastrar Dados</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="agendamento/cadastro.html" class="w3-bar-item w3-button">Agendar Consultas</a>
+                        <a href="agendamento/historico_paciente.html" class="w3-bar-item w3-button">Histórico de
+                            Consultas</a>
+                    </div>
+                </div>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                    onclick="myFunction()">&#9776;</a>
+                <a href="cadastrar-se.html"
+                    class="w3-bar-item w3-button w3-green w3-right w3-hide-small">Cadastrar-se</a>
+                <a href="login.html" class="w3-bar-item w3-button w3-green w3-right w3-hide-small">Login</a>
+            </div>
+
+            <div id="demo" class="w3-bar-block w3-green w3-hide w3-hide-large w3-hide-medium">
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button">Administrador <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="especialidade/especialidade.html" class="w3-bar-item w3-button">Especialidades</a>
+                        <hr>
+                        <a href="usuario/cadastro.html" class="w3-bar-item w3-button">Cadastro de Usuários</a>
+                        <a href="usuario/usuarios_cadastrados.html" class="w3-bar-item w3-button">Lista de Usuários</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button">Medico <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="medico/cadastro.html" class="w3-bar-item w3-button">Dados Cadastrais</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="medico/consultas.html" class="w3-bar-item w3-button">Consultas Agendadas</a>
+                    </div>
+                </div>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button">Paciente <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="paciente/cadastro.html" class="w3-bar-item w3-buttone">Cadastrar Dados</a>
+                        <a href="usuario/editar_senha.html" class="w3-bar-item w3-button">Editar Senha</a>
+                        <hr>
+                        <a href="agendamento/cadastro.html" class="w3-bar-item w3-button">Agendar Consultas</a>
+                        <a href="agendamento/historico_paciente.html" class="w3-bar-item w3-button">Histórico de
+                            Consultas</a>
+                    </div>
+                </div>
+                <a href="cadastrar-se.html" class="w3-bar-item w3-button w3-green w3-right">Cadastrar-se</a>
+                <a href="login.html" class="w3-bar-item w3-button w3-green w3-right">Login</a>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
