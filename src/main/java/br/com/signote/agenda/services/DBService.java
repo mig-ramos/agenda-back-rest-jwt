@@ -55,14 +55,14 @@ SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Especialidade esp1 = new Especialidade(null,"Pediatra", "Descrição do Pediatra");
 		Especialidade esp2 = new Especialidade(null,"Clínico Geral", "Descrição do Clínico Geral");
 		
-		Usuario usu1 = new Usuario(null,"Miguel Arcanjo Ramos", "admin.ephemeris@gmail.com", pe.encode("123"),"123456", sdf1.parse("14/05/1959 09:45"), true);
+		Usuario usu1 = new Usuario(null,"Administrador Ephemeris", "admin.ephemeris@gmail.com", pe.encode("123"),"123456", sdf1.parse("14/05/1959 09:45"), true);
 		usu1.addPerfil(Perfil.ADMIN);
 		
 		Paciente pac1 = new Paciente(null, "Paciente da Silva","p.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("10/08/1959 13:40"), true, sdf2.parse("14/05/1959")) ;
 		
 		Medico med1 = new Medico(null, "Médico da Silva", "m.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("04/05/1959 10:45"), true, 123456, sdf2.parse("14/05/1959"));
 		
-		Medico med2 = new Medico(null, "Miguel A Ramos", "mig.ramos10@gmail.com", pe.encode("123"),"789123",sdf1.parse("14/10/1959 12:45"), true, 435465, sdf2.parse("14/05/1959"));
+		Medico med2 = new Medico(null, "Médico Siderbit", "siderbit@gmail.com", pe.encode("123"),"789123",sdf1.parse("14/10/1959 12:45"), true, 435465, sdf2.parse("14/05/1959"));
 		
 		Hora hr1 = new Hora(null, "8:00");
 		Hora hr2 = new Hora(null, "9:00");
