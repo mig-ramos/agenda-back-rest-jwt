@@ -25,7 +25,7 @@ public class ProdConfig {
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
 		
-		if ("create".equals(strategy)) { // colocar um ponto de exclamação na frente (!"create".equals(strategy))
+		if (!"create".equals(strategy)) { // colocar um ponto de exclamação na frente (!"create".equals(strategy))
 			return true; // True Não recria o banco de dados
 		}
 		
