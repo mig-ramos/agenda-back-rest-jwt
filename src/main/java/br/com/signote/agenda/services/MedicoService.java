@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,9 @@ import br.com.signote.agenda.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class MedicoService {
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	@Autowired
 	private MedicoRepository repo;
@@ -50,7 +54,7 @@ public class MedicoService {
 	
 	public Medico fromDTO(@Valid MedicoNewDTO objDTO) {
 		
-		Medico med = new Medico(null, objDTO.getNome(), objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getCrm(), objDTO.getData_inscricao());
+		Medico med = new Medico(null, objDTO.getNome(), objDTO.getEmail(), pe.encode(objDTO.getSenha()), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getCrm(), objDTO.getData_inscricao());
 		Boolean ativo = objDTO.getAtivo() == null || !objDTO.getAtivo() ? false : true;
 		med.setAtivo(ativo);
 		Date instante = objDTO.getInstante() == null ? new Date():  objDTO.getInstante();

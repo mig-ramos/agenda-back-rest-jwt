@@ -55,7 +55,7 @@ SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Especialidade esp1 = new Especialidade(null,"Pediatra", "Descrição do Pediatra");
 		Especialidade esp2 = new Especialidade(null,"Clínico Geral", "Descrição do Clínico Geral");
 		
-		Usuario usu1 = new Usuario(null,"Administrador", "admin.ephemeris@gmail.com", pe.encode("123"),"123456", sdf1.parse("14/05/2021 09:45"), true);
+		Usuario usu1 = new Usuario(null,"Administrador", "adm.ephemeris@gmail.com", pe.encode("123"),"123456", sdf1.parse("14/05/2021 09:45"), true);
 		usu1.addPerfil(Perfil.ADMIN);
 		
 		Paciente pac1 = new Paciente(null, "Paciente da Silva","p.ephemeris@gmail.com", pe.encode("123"),"123456",sdf1.parse("10/08/2021 13:40"), true, sdf2.parse("14/05/1959")) ;

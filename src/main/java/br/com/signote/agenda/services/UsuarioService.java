@@ -16,12 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.signote.agenda.domain.Usuario;
-import br.com.signote.agenda.domain.enums.Perfil;
 import br.com.signote.agenda.dto.UsuarioDTO;
 import br.com.signote.agenda.dto.UsuarioNewDTO;
 import br.com.signote.agenda.repositories.UsuarioRepository;
-import br.com.signote.agenda.security.UserSS;
-import br.com.signote.agenda.services.exceptions.AuthorizationException;
 import br.com.signote.agenda.services.exceptions.DataIntegrityException;
 import br.com.signote.agenda.services.exceptions.ObjectNotFoundException;
 
@@ -37,10 +34,10 @@ public class UsuarioService {
 	public Usuario find(Integer id) {
 		
 		// Aqui somente o usuário pode acessar seu id
-		UserSS user = UserService.authenticated();
-		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
-			throw new AuthorizationException("Acesso negado");
-		}
+//		UserSS user = UserService.authenticated();
+//		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+//			throw new AuthorizationException("Acesso negado");
+//		}
 
 		
 		Optional<Usuario> obj = repo.findById(id);

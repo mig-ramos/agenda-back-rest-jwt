@@ -30,11 +30,12 @@ public class HoraDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getHoraMinuto() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHoraMinuto(String hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
+	
 }

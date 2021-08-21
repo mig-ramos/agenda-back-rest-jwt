@@ -46,7 +46,7 @@ public class HoraDisponivelService {
 	}
 
 	public Hora fromDTO(@Valid HoraDTO objDto) {
-		return new Hora(objDto.getId(), objDto.getHoraMinuto());
+		return new Hora(objDto.getId(), objDto.getHora());
 	}
 	
 	public void delete(Integer id) {

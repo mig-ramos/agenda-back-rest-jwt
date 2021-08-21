@@ -88,7 +88,7 @@ public class HoraDisponivelResource {
 	public ResponseEntity<Page<HoraDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue="horaMinuto") String orderBy, 
+			@RequestParam(value="orderBy", defaultValue="hora") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
 		Page<Hora> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<HoraDTO> listDTO = list.map(obj -> new HoraDTO(obj));

@@ -12,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ import br.com.signote.agenda.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PacienteService {
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	@Autowired
 	private PacienteRepository repo;
@@ -41,12 +45,12 @@ public class PacienteService {
 	}
 
 	public Paciente fromDTO(@Valid PacienteDTO objDTO) {
-		return new Paciente(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getSenha(), null, null, null, objDTO.getData_nascimento());
+		return new Paciente(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(),objDTO.getSenha(), null, null, null, objDTO.getData_nascimento());
 	}
 	
 	public Paciente fromDTO(@Valid PacienteNewDTO objDTO) throws ParseException {
 
-		Paciente paci = new Paciente(null, objDTO.getNome(), objDTO.getEmail(), objDTO.getSenha(), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getData_nascimento());
+		Paciente paci = new Paciente(null, objDTO.getNome(), objDTO.getEmail(), pe.encode(objDTO.getSenha()), objDTO.getCodigo(), objDTO.getInstante(), objDTO.getAtivo(), objDTO.getData_nascimento());
 		Boolean ativo = objDTO.getAtivo() == null || !objDTO.getAtivo() ? false : true;
 		paci.setAtivo(ativo);
 		Date instante = objDTO.getInstante() == null ? new Date():  objDTO.getInstante();

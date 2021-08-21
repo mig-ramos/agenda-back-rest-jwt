@@ -87,16 +87,18 @@ public class AgendaResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
+	//@PreAuthorize("hasAnyRole('ADMIN', 'PACIENTE', 'MEDICO', 'USUARIO')")
 	@RequestMapping(value="/paciente",method=RequestMethod.GET)
 	public ResponseEntity<Page<Agenda>> findPagePaciente(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue="dataDisponivel") String orderBy, 
+			@RequestParam(value="orderBy", defaultValue="ultimaAlteracao") String orderBy, 
 			@RequestParam(value="direction", defaultValue="DESC") String direction) {
 		Page<Agenda> list = service.findPagePaciente(page, linesPerPage, orderBy, direction);		
 		return ResponseEntity.ok().body(list);
 	}
 	
+	//@PreAuthorize("hasAnyRole('ADMIN','PACIENTE', 'MEDICO', 'USUARIO')")
 	@RequestMapping(value="/medico",method=RequestMethod.GET)
 	public ResponseEntity<Page<Agenda>> findPageMedico(
 			@RequestParam(value="page", defaultValue="0") Integer page, 

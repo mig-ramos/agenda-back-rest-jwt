@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Hora implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,7 @@ public class Hora implements Serializable {
 	@Column(unique = true, length = 5, nullable = false)
 	private String hora;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "hora")
 	private List<Agenda> agenda = new ArrayList<>();
 	
@@ -49,6 +52,14 @@ public class Hora implements Serializable {
 
 	public void setHora(String hora) {
 		this.hora = hora;
+	}	
+
+	public List<Agenda> getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(List<Agenda> agenda) {
+		this.agenda = agenda;
 	}
 
 	@Override
